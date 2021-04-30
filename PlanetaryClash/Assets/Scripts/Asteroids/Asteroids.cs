@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class Asteroids : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private float rotationSpeed;
+
+    private Rigidbody rb;
+
+   // public float speed;
+    private Vector2 direction;
+    
+
     void Start()
     {
-        
+       // rotationSpeed = Random.Range(-25, 25);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+    
     }
 }

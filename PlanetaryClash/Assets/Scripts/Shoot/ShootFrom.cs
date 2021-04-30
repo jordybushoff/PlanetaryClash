@@ -6,10 +6,20 @@ public class ShootFrom : MonoBehaviour
 {
     public GameObject[] asteroids;
 
-    public GameObject[] spawnPositions;
+    public Transform[] spawnPositions;
+    public GameObject Location;
 
     public float spawnRate;
     private float NextSpawn;
+
+    public bool RechtsOm;
+
+    public Transform gravityTarget;
+    public Transform gravityTarget2;
+
+
+
+    public float speed;
 
     private void Start()
     {
@@ -24,11 +34,29 @@ public class ShootFrom : MonoBehaviour
             Spawn();
     }
 
+
+
     private void Spawn()
     {
-        NextSpawn=spawnRate;
-        Vector2 position = spawnPositions[Random.Range(0, spawnPositions.Length)].transform.position;
-        GameObject asteroidClone = Instantiate(asteroids[Random.Range(0, asteroids.Length)], new Vector2(position.x, position.y), transform.rotation);
-        asteroidClone.SetActive(true);
+
+
+        NextSpawn = spawnRate;
+        Transform SpawnPlekken = spawnPositions[Random.Range(0, spawnPositions.Length)];
+
+        GameObject AsteroidKogel = Instantiate(asteroids[Random.Range(0, asteroids.Length)], SpawnPlekken.transform.position, SpawnPlekken.transform.localRotation);
+        AsteroidKogel.GetComponent<Rigidbody>().AddForce(AsteroidKogel.transform.forward * speed, ForceMode.Impulse);
+        AsteroidKogel.GetComponent<SlowlyToMid>().RechtsOm = RechtsOm;
+
+        AsteroidKogel.GetComponent<MeteorsGravityTo>().gravityTarget = gravityTarget;
+        AsteroidKogel.GetComponent<MeteorsGravityTo>().gravityTarget2 = gravityTarget2;
+        AsteroidKogel.GetComponent<SlowlyToMid>().gravityTarget = gravityTarget;
+        AsteroidKogel.GetComponent<SlowlyToMid>().gravityTarget2 = gravityTarget2;
+
+       // Debug.Log(SpawnPlekken.transform.rotation);
+       // Debug.Log(transform.forward);
+      // AsteroidKogel.GetComponent<Rigidbody>().AddForce(transform.forward * speed);
+
+        //AsteroidKogel.SetActive(true);
+  
     }
 }
