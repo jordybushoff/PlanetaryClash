@@ -6,6 +6,15 @@ TagManager:
   tags:
   - MachinePlanet
   - NaturePlanet
+  - RechtsOm
+  - LinksOm
+  - Meteor
+  - Laser
+  - Walls
+  - ShieldRed
+  - ShieldBlue
+  - MachineMissile
+  - NatureMissile
   layers:
   - Default
   - TransparentFX

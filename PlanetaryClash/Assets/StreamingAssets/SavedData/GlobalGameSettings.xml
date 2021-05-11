@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<ArrayOfGlobalGameSetting xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <GlobalGameSetting>
+    <Label>Players</Label>
+    <Value>2</Value>
+    <PossibleValues>
+      <string>2</string>
+      <string>4</string>
+      <string>6</string>
+      <string>8</string>
+    </PossibleValues>
+    <Default>2</Default>
+  </GlobalGameSetting>
+</ArrayOfGlobalGameSetting>

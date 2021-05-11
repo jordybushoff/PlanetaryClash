@@ -39,24 +39,40 @@ public class ShootFrom : MonoBehaviour
     private void Spawn()
     {
 
-
-        NextSpawn = spawnRate;
         Transform SpawnPlekken = spawnPositions[Random.Range(0, spawnPositions.Length)];
+        NextSpawn = spawnRate;
+       
 
-        GameObject AsteroidKogel = Instantiate(asteroids[Random.Range(0, asteroids.Length)], SpawnPlekken.transform.position, SpawnPlekken.transform.localRotation);
-        AsteroidKogel.GetComponent<Rigidbody>().AddForce(AsteroidKogel.transform.forward * speed, ForceMode.Impulse);
-        AsteroidKogel.GetComponent<SlowlyToMid>().RechtsOm = RechtsOm;
+        if (SpawnPlekken.gameObject.tag == "RechtsOm")
+        {
 
-        AsteroidKogel.GetComponent<MeteorsGravityTo>().gravityTarget = gravityTarget;
-        AsteroidKogel.GetComponent<MeteorsGravityTo>().gravityTarget2 = gravityTarget2;
-        AsteroidKogel.GetComponent<SlowlyToMid>().gravityTarget = gravityTarget;
-        AsteroidKogel.GetComponent<SlowlyToMid>().gravityTarget2 = gravityTarget2;
 
-       // Debug.Log(SpawnPlekken.transform.rotation);
-       // Debug.Log(transform.forward);
-      // AsteroidKogel.GetComponent<Rigidbody>().AddForce(transform.forward * speed);
+            GameObject AsteroidKogel = Instantiate(asteroids[Random.Range(0, asteroids.Length)], SpawnPlekken.transform.position, SpawnPlekken.transform.localRotation);
+            AsteroidKogel.GetComponent<Rigidbody>().AddForce(AsteroidKogel.transform.forward * speed, ForceMode.Impulse);
 
-        //AsteroidKogel.SetActive(true);
-  
+
+
+            AsteroidKogel.GetComponent<SlowlyToMid>().RechtsOm = true;
+
+            
+            AsteroidKogel.GetComponent<SlowlyToMid>().gravityTarget = gravityTarget;
+            AsteroidKogel.GetComponent<SlowlyToMid>().gravityTarget2 = gravityTarget2;
+        }
+        else
+        {
+            GameObject AsteroidKogel = Instantiate(asteroids[Random.Range(0, asteroids.Length)], SpawnPlekken.transform.position, SpawnPlekken.transform.localRotation);
+            AsteroidKogel.GetComponent<Rigidbody>().AddForce(AsteroidKogel.transform.forward * speed, ForceMode.Impulse);
+
+
+
+            AsteroidKogel.GetComponent<SlowlyToMid>().RechtsOm = false;
+
+            
+            AsteroidKogel.GetComponent<SlowlyToMid>().gravityTarget = gravityTarget;
+            AsteroidKogel.GetComponent<SlowlyToMid>().gravityTarget2 = gravityTarget2;
+        }
+        
+
+
     }
 }
