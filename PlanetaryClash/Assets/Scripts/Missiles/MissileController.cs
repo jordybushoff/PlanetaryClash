@@ -24,7 +24,7 @@ public class MissileController : MonoBehaviour, I_SmartwallInteractable
             var healthComponent = col.GetComponent<MachineHealth>();
             if (healthComponent != null)
             {
-                healthComponent.TakeDamage(1);
+                healthComponent.TakeDamage(10);
             }
 
             Destroy(this.gameObject);
@@ -35,7 +35,7 @@ public class MissileController : MonoBehaviour, I_SmartwallInteractable
             var healthComponent = col.GetComponent<NatureHealth>();
             if (healthComponent != null)
             {
-                healthComponent.TakeDamage(1);
+                healthComponent.TakeDamage(10);
             }
 
             Destroy(this.gameObject);

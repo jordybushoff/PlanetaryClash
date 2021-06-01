@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class MachineHealth : MonoBehaviour, I_SmartwallInteractable
 {
-    public int maxHealth = 5;
-    public int currentHealth;
+    
 
     [SerializeField] public Renderer thisPlanet;
 
@@ -15,6 +14,7 @@ public class MachineHealth : MonoBehaviour, I_SmartwallInteractable
     [SerializeField] public Material roodKleur;
 
     public Slider staminaBar;
+    public Slider healthBar;
 
     private Coroutine regen;
 
@@ -22,6 +22,11 @@ public class MachineHealth : MonoBehaviour, I_SmartwallInteractable
     public float currentStamina;
     public float startStamina;
     public float minStamina = 0;
+
+    public float maxHealth = 50f;
+    public float currentHealth;
+    public float startHealth;
+    public float minHealth = 0;
 
     public static MachineHealth instance;
 
@@ -36,11 +41,15 @@ public class MachineHealth : MonoBehaviour, I_SmartwallInteractable
 
     void Start()
     {
-        currentHealth = 5;
+        
 
         currentStamina = startStamina;
         staminaBar.maxValue = maxStamina;
         staminaBar.value = startStamina;
+
+        currentHealth = startHealth;
+        healthBar.maxValue = maxHealth;
+        healthBar.value = startHealth;
 
         shieldIsAan = false;
 }
@@ -79,19 +88,20 @@ public class MachineHealth : MonoBehaviour, I_SmartwallInteractable
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
+        healthBar.value = currentHealth;
 
 
-        if (currentHealth <= 4)
+        if (currentHealth <= 40f)
         {
             thisPlanet.material = geelKleur;
         }
 
-        if (currentHealth <= 3)
+        if (currentHealth <= 30f)
         {
             thisPlanet.material = oranjeKleur;
         }
 
-        if (currentHealth <= 2)
+        if (currentHealth <= 20f)
         {
             thisPlanet.material = roodKleur;
         }
