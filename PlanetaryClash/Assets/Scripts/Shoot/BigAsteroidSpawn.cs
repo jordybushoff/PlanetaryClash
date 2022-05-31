@@ -18,7 +18,7 @@ public class BigAsteroidSpawn : MonoBehaviour
 
     private void Start()
     {
-
+        NextSpawn = 25.0f;
     }
 
     private void Update()

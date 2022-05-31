@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class NatureHealth : MonoBehaviour, I_SmartwallInteractable
 {
@@ -9,10 +11,11 @@ public class NatureHealth : MonoBehaviour, I_SmartwallInteractable
 
     [SerializeField] public Renderer thisPlanet;
 
-    
+    /*
     [SerializeField] public Material geelKleur;
     [SerializeField] public Material oranjeKleur;
     [SerializeField] public Material roodKleur;
+    */
 
     public Slider staminaBar;
     public Slider healthBar;
@@ -34,6 +37,14 @@ public class NatureHealth : MonoBehaviour, I_SmartwallInteractable
     public GameObject shieldObject;
     public bool shieldIsAan;
 
+    public TextMeshProUGUI EndText;
+
+    public GameObject planetSeparateFX;
+    public GameObject planetExplodeFX;
+    public GameObject planetExplodeAnim;
+    public GameObject glowSphere;
+    public GameObject planetAtmos;
+
     private void Awake()
     {
         instance = this;
@@ -52,6 +63,12 @@ public class NatureHealth : MonoBehaviour, I_SmartwallInteractable
         healthBar.value = startHealth;
 
         shieldIsAan = false;
+         // EndText = GetComponent<TextMeshProUGUI>();
+        EndText.SetText(" ");
+
+        planetExplodeFX.SetActive(false);
+        planetSeparateFX.SetActive(false);
+        planetAtmos.SetActive(true);
     }
 
     public void UseStamina(int amount)
@@ -95,20 +112,27 @@ public class NatureHealth : MonoBehaviour, I_SmartwallInteractable
 
         if (currentHealth <= 40f)
         {
-            thisPlanet.material = geelKleur;
+            //thisPlanet.material = geelKleur;
         }
 
         if (currentHealth <= 30f)
         {
-            thisPlanet.material = oranjeKleur;
+            //thisPlanet.material = oranjeKleur;
         }
 
         if (currentHealth <= 20f)
         {
-            thisPlanet.material = roodKleur;
+            //thisPlanet.material = roodKleur;
         }
 
-    
+        if (currentHealth <= 0f && currentHealth == 0f)
+        {
+
+            StartCoroutine(ExplodePlanet());
+        }
+
+
+
     }
 
     public void heal(int amount)
@@ -123,11 +147,21 @@ public class NatureHealth : MonoBehaviour, I_SmartwallInteractable
 
     public void Hit(Vector3 hitPosition)
     {
-        Debug.Log("Hallo");
-        shieldObject.SetActive(true);
-        StartCoroutine(deployStamina());
+
+        if (shieldObject.activeSelf)
+        {
+            shieldObject.SetActive(false);
+        }
+        else
+        {
+            Debug.Log("Hallo");
+            shieldObject.SetActive(true);
+            StartCoroutine(deployStamina());
+
+        }
 
     }
+
 
     // Update is called once per frame
     void Update()
@@ -144,13 +178,40 @@ public class NatureHealth : MonoBehaviour, I_SmartwallInteractable
     {
         yield return new WaitForSeconds(0.1f);
 
-        while (currentStamina > minStamina)
+        while (currentStamina > minStamina && shieldObject.activeSelf)
         {
             currentStamina -= maxStamina / 300f;
             staminaBar.value = currentStamina;
             yield return new WaitForSeconds(0.1f);
         }
         regen = null;
+    }
+
+   
+
+    IEnumerator ExplodePlanet()
+    {
+
+        planetSeparateFX.SetActive(true);
+        planetExplodeAnim.GetComponent<Animation>().Play();
+
+        yield return new WaitForSeconds(4.5f);
+
+        planetAtmos.SetActive(false);
+        glowSphere.SetActive(false);
+        planetExplodeFX.SetActive(true);
+
+        EndText.SetText("Machine Wins !");
+
+        yield return new WaitForSeconds(6.0f);
+
+        planetExplodeFX.SetActive(false);
+        planetSeparateFX.SetActive(false);
+
+        yield return new WaitForSeconds(1.0f);
+
+        Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
+
     }
 }
 

@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b5fcfc4f8df78f748b0575eb4e423727, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -92,7 +92,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3230644870609408403
 Rigidbody:
@@ -138,4 +138,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DestructionEffect: {fileID: 1346728151125445293, guid: 4ecb027132aefe64287950f3ecd49b36,
+    type: 3}
+  MachineEffect: {fileID: 2781247073315612895, guid: 37eb49208435d0c4991ae10837e3dfe1,
+    type: 3}
+  NatureEffect: {fileID: 5342274152595992044, guid: b256fd90373adeb4bb225d467a0ee17c,
     type: 3}

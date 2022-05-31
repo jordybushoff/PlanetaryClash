@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6918575402566438418}
   m_Layer: 0
   m_Name: BigMeteor
-  m_TagString: Meteor
+  m_TagString: BigMeteor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,7 +91,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.85
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3233970051589513226
 Rigidbody:
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 009e715ce8b6805438b4e0d112de0513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfProjectiles: 8
+  numberOfProjectiles: 3
   asteroidBreakUpSpawn: {fileID: 4213043685531582, guid: eb0f377d1cd497449a71520d326b39ec,
     type: 3}
   gravityTarget: {fileID: 0}

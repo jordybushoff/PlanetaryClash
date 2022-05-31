@@ -5,6 +5,8 @@ using UnityEngine;
 public class MissileController : MonoBehaviour, I_SmartwallInteractable
 {
     public ParticleSystem DestructionEffect;
+    public ParticleSystem MachineEffect;
+    public ParticleSystem NatureEffect;
 
     void Start()
     {
@@ -27,6 +29,7 @@ public class MissileController : MonoBehaviour, I_SmartwallInteractable
                 healthComponent.TakeDamage(10);
             }
 
+            ParticleSystem explosionEffect = Instantiate(NatureEffect, transform.position, Quaternion.identity) as ParticleSystem;
             Destroy(this.gameObject);
         }
         if (col.gameObject.tag == "NaturePlanet")
@@ -38,19 +41,20 @@ public class MissileController : MonoBehaviour, I_SmartwallInteractable
                 healthComponent.TakeDamage(10);
             }
 
+            ParticleSystem explosionEffect = Instantiate(MachineEffect, transform.position, Quaternion.identity) as ParticleSystem;
             Destroy(this.gameObject);
         }
 
         if (col.gameObject.tag == "ShieldRed")
         {
-            ParticleSystem explosionEffect = Instantiate(DestructionEffect, transform.position, Quaternion.identity) as ParticleSystem;
+            ParticleSystem explosionEffect = Instantiate(NatureEffect, transform.position, Quaternion.identity) as ParticleSystem;
             Destroy(gameObject);
             MachineHealth.instance.UseStamina(50);
         }
 
         if (col.gameObject.tag == "ShieldBlue")
         {
-            ParticleSystem explosionEffect = Instantiate(DestructionEffect, transform.position, Quaternion.identity) as ParticleSystem;
+            ParticleSystem explosionEffect = Instantiate(MachineEffect, transform.position, Quaternion.identity) as ParticleSystem;
             Destroy(gameObject);
             NatureHealth.instance.UseStamina(50);
         }
@@ -61,13 +65,13 @@ public class MissileController : MonoBehaviour, I_SmartwallInteractable
     {
         if (this.tag == "MachineMissile")
         {
-            ParticleSystem explosionEffect = Instantiate(DestructionEffect, transform.position, Quaternion.identity) as ParticleSystem;
+            ParticleSystem explosionEffect = Instantiate(MachineEffect, transform.position, Quaternion.identity) as ParticleSystem;
             Destroy(gameObject);
         }
 
         if (this.tag == "NatureMissile")
         {
-            ParticleSystem explosionEffect = Instantiate(DestructionEffect, transform.position, Quaternion.identity) as ParticleSystem;
+            ParticleSystem explosionEffect = Instantiate(NatureEffect, transform.position, Quaternion.identity) as ParticleSystem;
             Destroy(gameObject);
         }
 
