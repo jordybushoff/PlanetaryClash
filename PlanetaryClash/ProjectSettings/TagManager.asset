@@ -15,6 +15,7 @@ TagManager:
   - ShieldBlue
   - MachineMissile
   - NatureMissile
+  - BigMeteor
   layers:
   - Default
   - TransparentFX
