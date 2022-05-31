@@ -49,14 +49,14 @@ public class MissileController : MonoBehaviour, I_SmartwallInteractable
         {
             ParticleSystem explosionEffect = Instantiate(NatureEffect, transform.position, Quaternion.identity) as ParticleSystem;
             Destroy(gameObject);
-            MachineHealth.instance.UseStamina(50);
+            MachineHealth.instance.UseStamina(25);
         }
 
         if (col.gameObject.tag == "ShieldBlue")
         {
             ParticleSystem explosionEffect = Instantiate(MachineEffect, transform.position, Quaternion.identity) as ParticleSystem;
             Destroy(gameObject);
-            NatureHealth.instance.UseStamina(50);
+            NatureHealth.instance.UseStamina(25);
         }
 
     }

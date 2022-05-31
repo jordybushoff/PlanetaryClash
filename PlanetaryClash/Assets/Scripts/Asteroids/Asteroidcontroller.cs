@@ -11,11 +11,13 @@ public class Asteroidcontroller : MonoBehaviour, I_SmartwallInteractable
 
     public ParticleSystem DestructionEffect;
 
-   
+    public GameObject materialAsteroid;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        randomRotation = new Vector3(Random.Range(0f, 100f), Random.Range(0f, 100f), Random.Range(0f, 100f));
+        randomRotation = new Vector3(Random.Range(0f, 30f), Random.Range(0f, 30f), Random.Range(0f, 30f));
 
     }
 
@@ -72,14 +74,15 @@ public class Asteroidcontroller : MonoBehaviour, I_SmartwallInteractable
         }
 
     }
-
+    
   
-
+    
     public void Hit(Vector3 hitPosition)
     {
         ParticleSystem explosionEffect = Instantiate(DestructionEffect, transform.position, Quaternion.identity) as ParticleSystem;
-        Destroy(gameObject);
 
+        GameObject AsteroidKogel = Instantiate(materialAsteroid, this.transform.position, this.transform.localRotation);
+        /*
         var playerScreenPoint = Camera.main.WorldToScreenPoint(this.transform.position);
 
         if (playerScreenPoint.x < Screen.width/2)
@@ -90,7 +93,9 @@ public class Asteroidcontroller : MonoBehaviour, I_SmartwallInteractable
         {
             NatureHealth.instance.getStamina(100);
         }
+        */
 
-        
+        Destroy(gameObject);
+
     }
 }

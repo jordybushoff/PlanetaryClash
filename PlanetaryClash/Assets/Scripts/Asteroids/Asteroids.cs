@@ -27,7 +27,7 @@ public class Asteroids : MonoBehaviour, I_SmartwallInteractable
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        randomRotation = new Vector3(Random.Range(0f, 100f), Random.Range(0f, 100f), Random.Range(0f, 100f));
+        randomRotation = new Vector3(Random.Range(0f, 30f), Random.Range(0f, 30f), Random.Range(0f, 30f));
 
         radius = 5f;
         moveSpeed = 100f;

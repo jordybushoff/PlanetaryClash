@@ -171,7 +171,11 @@ public class NatureHealth : MonoBehaviour, I_SmartwallInteractable
             shieldObject.SetActive(false);
         }
 
-       
+        if (currentStamina > maxStamina)
+        {
+            currentStamina = maxStamina;
+        }
+
     }
 
     private IEnumerator deployStamina()
